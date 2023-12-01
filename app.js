@@ -1,7 +1,18 @@
+var carid = null;
+
 const LoadData = (id) => {
+    carid = id
     fetch(`https://openapi.programming-hero.com/api/videos/category/${id}`)
     .then((rep) => rep.json())
-    .then((data) => DisplayData(data.data));
+    .then((data) => {
+        
+        if (data.data.length > 0){
+            DisplayData(data.data)
+        }
+        else{
+            ErrorNoData();
+        }
+    });
 };
 
 const DisplayData = (data) =>{
@@ -13,13 +24,18 @@ const DisplayData = (data) =>{
         const card = document.createElement("div");
         card.classList.add("card");
         card.classList.add("col-12");
-        card.classList.add("col-md-3");
+        card.classList.add("col-md-4");
+        card.classList.add("col-lg-3");
         card.classList.add("card-selected");
-
+        const hour = parseInt((v.others.posted_date / 60) / 60);
+        const min = parseInt((v.others.posted_date / 60) % 60);
+        
         card.innerHTML = `
-        <div class="card-body">
-            <div class="card-image">
+        <div class="card-body card-box">
+            <div class="card-image ">
                 <img class="thumbnail" src="${v.thumbnail}" alt="">
+                ${v.others.posted_date? `<p class="time">${hour} hours ${min} minutes ago</p>`: '<p></p>'}
+
             </div>
             
             <div class="d-flex card-body-two">
@@ -29,8 +45,7 @@ const DisplayData = (data) =>{
                 <div class="ps-3">
                     <h5 class="card-title">${v.title}</h5>
                     <small id="card-small-text">${v.authors[0].profile_name}</small>
-                    
-                    <i class="fa-solid ps-2 fa-circle-check" style="color: #075ced;"></i>
+                    <small>${v.authors[0].verified? '<i class="fa-solid ps-2 fa-circle-check" style="color: #075ced;"></i>': '<small></small>' }</small>
                     <br>
                     <small id="card-small-text">${v.others.views} views</small>
                 </div>
@@ -54,11 +69,9 @@ function ErrorNoData(){
             
     `;
     cardContainer.appendChild(error);
-};
+}
 
-ErrorNoData();
-
-
+var carentLoadId = null;
 function AllData(){
     LoadData(1000);
 };
@@ -71,3 +84,33 @@ function ComedyData(){
 function DrawingData(){
     LoadData(1005);
 };
+function SortData(){
+
+}
+AllData();
+
+function SortData() {
+    fetch(`https://openapi.programming-hero.com/api/videos/category/${carid}`)
+        .then((rep) => rep.json())
+        .then((data) => {
+            data.data.forEach(item => {
+                item.others.views = parseFloat(item.others.views) || 0;
+            });
+
+            data.data.sort((a, b) => b.others.views - a.others.views);
+
+            
+            if (data.data.length > 0) {
+                DisplayData(data.data);
+            } else {
+                ErrorNoData();
+            }
+        });
+}
+
+function Blog(){
+    window.location.href = "blog.html";
+}
+
+
+

@@ -41,6 +41,10 @@
     padding: 3px;
     
 }
+.card-image{
+    position: relative;
+    
+}
 .thumbnail{
     height: 220px;
     width: 365px;
@@ -67,4 +71,35 @@
     margin-top: 100px;
     height: 250px;
     width: 250px;
+    
 }
+.time{
+    background-color: rgb(14, 13, 13);
+    color: rgb(224, 224, 224);
+    border-radius: 5px;
+    padding-left: 4px;
+    padding-right: 4px;
+    position: absolute;
+    bottom: -4px;
+    right: 8px;
+    
+}
+.Accordion{
+    background-image: url("images/bg0.avif");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-position: 0dvh;
+    padding-top: 100px;
+    padding-bottom: 5000px;
+    font-size: 20px;
+    
+}
+.accordion-tittle{
+    font-size: 23px;
+    font-weight: bold;
+}
+
+
+
+
