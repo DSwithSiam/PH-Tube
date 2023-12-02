@@ -23,9 +23,6 @@ const DisplayData = (data) =>{
     data.forEach((v) => {
         const card = document.createElement("div");
         card.classList.add("card");
-        card.classList.add("col-12");
-        card.classList.add("col-md-4");
-        card.classList.add("col-lg-3");
         card.classList.add("card-selected");
         const hour = parseInt((v.others.posted_date / 60) / 60);
         const min = parseInt((v.others.posted_date / 60) % 60);
