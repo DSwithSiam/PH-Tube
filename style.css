@@ -84,17 +84,7 @@
     right: 8px;
     
 }
-.Accordion{
-    background-image: url("images/bg0.avif");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    background-position: 0dvh;
-    padding-top: 100px;
-    padding-bottom: 5000px;
-    font-size: 20px;
-    
-}
+
 .accordion-tittle{
     font-size: 23px;
     font-weight: bold;
